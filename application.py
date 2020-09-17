@@ -29,6 +29,7 @@ class Grid:
 
 class Shape():
     def __init__(self, grid):
+        self.symbol = cmd.Color.random() + '■' + cmd.Color.reset
         self.directions = {'down':[1, 0], 'left':[0, -1], 'right':[0, 1]}
         self.grid = grid
         self.start_x = 0
@@ -86,7 +87,7 @@ class Shape():
         for key, value in self.grid.board.items():
             for point in self.shape:
                 if(point == key):
-                    self.grid.board[key] = '#'
+                    self.grid.board[key] = self.symbol
 
 
     def clear(self):
@@ -120,6 +121,6 @@ grid = Grid(10, 20)
 shape = Shape(grid)
 
 for index in range(19):
-    shape.move(shape.directions['down'])
+    shape.move(shape.directions[random.choice(['down'])])
     grid.draw()
-    time.sleep(0.1)
+    time.sleep(0.5)
